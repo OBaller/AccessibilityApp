@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    let pictures = [
-        "ales-krivec",
-        "galina-n",
-        "kevin-horstmann",
-        "nicolas-tissot"
-    ]
     
-    @State var selectedPicture = Int.random(in: 0...3)
+    
     
     var body: some View {
-        Image(pictures[selectedPicture])
-            .resizable()
-            .scaledToFit()
-            .onTapGesture {
-                selectedPicture = Int.random(in: 0...3)
-            }
+        TabView {
+            ProspectsView(filter: .none)
+                .tabItem {
+                    Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView(filter: .contacted)
+                .tabItem {
+                    Label("Contacted", systemImage: "checkmark.circle")
+                }
+            ProspectsView(filter: .uncontacted)
+                .tabItem {
+                    Label("Uncontacted", systemImage: "questionmark.diamond")
+                }
+            MeView()
+                .tabItem {
+                    Label("Me", systemImage: "person.crop.square")
+                }
+        }
     }
 }
 
