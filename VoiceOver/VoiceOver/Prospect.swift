@@ -14,6 +14,7 @@ class Prospect: Identifiable, Codable {
     var isContacted = false
 }
 
+// Mark: - ViewModel
 @MainActor class Prospects: ObservableObject {
     @Published var people: [Prospect]
 
